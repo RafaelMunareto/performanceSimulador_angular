@@ -1,0 +1,67 @@
+<p-dialog header="Simulador Performance {{ tipoPerformance }} - {{ unSelected }}"
+        [maximizable]='true'
+        (onHide)='hide.emit()'
+        [baseZIndex]="5001"
+        [(visible)]="display"
+        position="bottom"
+        [style]="{width: '100vw'}"
+    >
+
+  <!-- header notas finais -->
+  <app-simulador-notas
+    [cardVals]='cardVals'
+    [loadNotas]='loadNotas'
+    [newVals]='newVals'
+    [sprint]='sprint'
+    [direcionador]='direcionadores'
+    [prioritario]='prioritarios'
+    [dadoSimuladoArray]='dadoAlteradoSimulacao'
+  ></app-simulador-notas>
+
+  <!-- itens para calculo -->
+  <!-- sprint -->
+  <div class="margin-1 row mt-4">
+    <div class="row m-auto w100" style="position: relative">
+      <div class="col-12 mb-2">
+        <div class="row mr-0 ml-0 row_card mt-2">
+          <div class="row_tittle">
+            <span><i class="fas fa-user-chart"></i> SPRINTS</span>
+          </div>
+          <div class="row" style='margin-left:0.1rem'>
+            <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of sprint' [data]='linha'></app-simulador-items>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- prioriários -->
+    <div class="row m-auto w100" style="position: relative">
+      <div class="col-12 mb-2">
+        <div class="row mr-0 ml-0 row_card mt-2">
+          <div class="row_tittle">
+            <span><i class="fas fa-user-chart"></i> PRIORITÁRIOS</span>
+          </div>
+          <div class="row" style='margin-left:0.1rem'>
+            <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of prioritarios' [data]='linha'></app-simulador-items>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- direcionadores -->
+     <div class="row m-auto w100" style="position: relative">
+      <div class="col-12 mb-2">
+        <div class="row mr-0 ml-0 row_card mt-2">
+          <div class="row_tittle">
+            <span><i class="fas fa-user-chart"></i> DIRECIONADORES</span>
+          </div>
+          <div class="row" style='margin-left:0.1rem'>
+            <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of direcionadores' [data]='linha'></app-simulador-items>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</p-dialog>

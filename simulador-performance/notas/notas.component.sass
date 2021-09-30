@@ -1,0 +1,347 @@
+//Helpers
+.text-justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+//Header
+.under_header
+  background-image: linear-gradient(180deg, #0000000f, transparent)
+  position: relative
+  position: absolute
+  background-position: right
+  background-repeat: no-repeat
+  height: 250px
+
+.main_header
+  margin: 10px 35px 0px 100px
+  padding: 10px 0
+  font-size: 30px
+  font-weight: 600
+  border-bottom: solid 2px #29a2b0
+  color: #3e3e3e
+
+//Menu
+.menu_lateral
+  background-color: #005169
+  position: absolute
+  height: 100%
+  width: 80px
+  transition: all 0.2s ease-in-out
+  z-index: 99
+  overflow: hidden
+
+.menu_lateral:hover
+  width: 265px
+  background-color: #056683
+
+.menu_item
+  color: white
+  width: 350px
+  overflow: hidden
+  // padding: 5px 5px 10px 0px
+  padding: 18px 0px
+  font-size: 25px
+  font-weight: 500
+  transition: all 0.2s ease-in-out
+  // margin-bottom: 30px
+  cursor: pointer
+
+.active_menu, .menu_item:hover
+  border-left: solid 4px #f99500
+  background-color: #045a73
+
+.menu_lateral:hover .menu_item
+  font-size: 20px
+
+.sp_item
+  text-align: center
+  padding-left: 0
+
+.sp_item > i:not(.active_item)
+  width: 80px
+  //transition: all 0.2s ease-in-out
+
+.sp_item > i.active_item
+  width: 76px
+  //transition: all 0.2s ease-in-out
+
+.menu_lateral:hover .sp_item > i
+  width: 30px
+  margin-left: 15px
+
+.item_text
+  opacity: 0
+  margin-left: 10px
+  transition: opacity 0.2s ease-in-out
+
+.menu_lateral:hover .item_text
+  opacity: 1
+
+
+//Cards
+.card_nota
+  box-shadow: 1px 2px 5px #797979
+  width: 100%
+  color: #f7f7f7
+  background-color: #ca5353
+  transition: all 3s
+  position: relative
+
+.card_ico
+  position: absolute
+  font-size: 80px
+  color: #00000024
+  margin: 25px
+
+.card_valor
+  position: relative
+  font-size: 40px
+  width: 100%
+  text-align: right
+  font-weight: 600
+  padding: 5px 18px 15px 15px
+  color: white
+
+.card_valor > i
+  font-size: 40px !important
+
+.card_bar
+  background-color: #00000024
+  height: 15px
+  width: 100%
+  bottom: 0
+
+.card_brilho
+  background-image: linear-gradient(10deg, transparent, #ffffff4a)
+  width: 100%
+  position: absolute
+  height: 100%
+
+.card_header
+  background-color: #efefef
+  border-bottom: solid 1px #dadada
+  padding: 15px
+  margin: -16px
+  color: #505050
+
+//Graph
+.graph_card
+  border-bottom: solid 5px #0fb4b4
+  box-shadow: 1px 2px 5px #797979
+  background-color: #fff
+
+//Row group
+.row_card
+  border-left: solid 5px #0fb4b4
+  box-shadow: 1px 2px 5px #797979
+  border-top-left-radius: 3px
+  border-bottom-left-radius: 3px
+  display: table
+  width: 100%
+  min-height: 200px
+  background-color: #fff
+
+.row_tittle
+  //background-color: #0fb4b4
+  background-color: #efefef
+  border-right: solid 1px #dadada
+  display: table-cell
+  width: 80px
+  margin-right: 5px
+  height: 100%
+  color: #505050
+
+.row_tittle span
+  transform: rotate(-90deg)
+  left: -35px
+  margin-top: -15px
+  position: absolute
+  text-align: center
+  top: 70%
+  z-index: 5
+  width: 195px
+  font-weight: 500
+  font-size: 1.2rem
+
+.item_info
+  width: 30%
+  margin: auto
+  position: relative
+  display: flex
+  justify-content: center
+  color: #868686
+
+.hr_item
+  border: 0
+  border-top: dashed 1px #ddd !important
+  margin-top: 1.2rem
+  margin-bottom: 1.2rem
+
+//Row Panels
+.rescard_Title
+  font-weight: 700
+  padding: 0px 0 10px 0px
+  color: #277cb5
+  font-size: 16px
+
+.card_hr
+  margin: 0 20px 12px 20px
+
+.rescard_Sub
+  font-weight: 700
+  font-size: 12px
+  color: #898c8f
+  margin-top: 3px
+
+.rescard_val
+  font-weight: 700
+  color: #505050
+  font-size: 15px
+  margin-top: 8px
+
+.rescard_obj
+  font-weight: 700
+  color: rgb(33, 150, 243)
+  font-size: 8px
+  margin-bottom: 8px
+
+:host ::ng-deep .p-knob-text
+  font-size: 1rem
+  text-align: center
+  font-weight: 600
+
+.no_items_txt
+  font-size: 19px
+  font-weight: 600
+  color: #a0a0a0
+
+//Table
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td,
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > th
+  padding: 0.5rem !important
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th.bold_row
+  color: #fff !important
+  background-color: #2a7dbd !important
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th.bold_row:hover
+  background: #358cce
+
+.text_white
+  color: #fff !important
+
+.border_blue
+  border-left: solid 4px #0861acff
+
+.border_red
+  border-left: solid 4px #ca5353
+
+.border_yellow
+  border-left: solid 4px #e29a0aff
+
+.border_green
+  border-left: solid 4px #61a03cff
+
+//Top 3 Cards
+.top_card
+  box-shadow: 1px 2px 5px #797979
+  position: relative
+  width: 100%
+  background-color: #fff
+
+.card_top_gold
+  background-image: linear-gradient(10deg, transparent, #fff5704a)
+  width: 100%
+  position: absolute
+  height: 100%
+
+.top_nome_ag
+  position: relative
+  font-size: 19px
+  color: #505050
+
+.top_detail
+  display: flex
+  flex-direction: column
+
+.top_side_gold
+  //background-color: #bda91a
+  overflow: hidden
+  display: flex
+  //background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent)
+  background-image: linear-gradient(10deg, #bda91a, #e8da33)
+  //background-size: 1rem 1rem
+
+.top_side_silver
+  overflow: hidden
+  display: flex
+  background-image: linear-gradient(10deg, #a09c9c, #dbdbe0)
+
+.top_side_bronze
+  overflow: hidden
+  display: flex
+  background-image: linear-gradient(10deg, #cd4f32d1, #f77152ad)
+
+.top_ico
+  font-size: 80px
+  color: #00000024
+  margin: auto
+
+.top_header
+  background-color: #efefef
+  border-bottom: solid 1px #dadada
+  margin: 0 -15px !important
+  text-align: center !important
+  padding: 40px
+  margin-bottom: 50px !important
+
+.top_img_div
+  position: absolute
+  top: 14px
+  text-align: center
+  margin: 0 -15px
+
+.top_img
+  border-radius: 50%
+  width: 120px
+  height: 120px
+  max-width: 120px
+  max-height: 120px
+
+.top_val
+    text-align: center !important
+    padding-bottom: 0px !important
+    color: green
+    font-size: 30px
+    font-weight: 700
+
+
+//notas
+.fixed_top
+  top: 7%
+  background-color: rgb(255 255 255 / 36%)
+  position: fixed
+  width: Calc(100% - 80px)
+  height: 50px
+  z-index: 99
+  backdrop-filter: blur(3px)
+  overflow: hidden
+  left: 80px
+  padding: 5px
+  left:2%
+
+.mini_card_valor
+  font-size: 22px
+  font-weight: 600
+  padding: 0 18px 0 0
+  color: white
+  display: inline-block
+  float: right
+
+.mini_card_ico
+  position: absolute
+  font-size: 30px
+  color: #00000024
+  margin: 2px 0 0 6px
