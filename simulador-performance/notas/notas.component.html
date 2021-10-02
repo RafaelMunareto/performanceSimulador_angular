@@ -1,72 +1,74 @@
-<div class="row m-auto fixed_top mt-3">
+<div style='min-height: 3rem;' class='d-flex justify-content-center'>
+  <div class="row m-auto fixed_top pr-4">
 
-  <div class="col-3">
-    <div class="card_nota" [ngClass]='parseColor( notasNovo.notasFinal > 0 ? notasNovo.notasFinal : cardVals.notaFinal)'>
-      <div class="card_brilho"></div>
-      <div class="fas fa-chart-area mini_card_ico"></div>
-      <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
-        NOTA FINAL
+    <div class="col-3">
+      <div class="card_nota" [ngClass]='parseColor( notasNovo.notasFinal > 0 ? notasNovo.notasFinal : cardVals.notaFinal)'>
+        <div class="card_brilho"></div>
+        <div class="fas fa-chart-area mini_card_ico"></div>
+        <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
+          NOTA FINAL
+        </div>
+        <div *ngIf="loadNotas" class="mini_card_valor">
+          <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        <div *ngIf="!loadNotas" class="mini_card_valor">
+          {{ notasNovo.notasFinal > 0 ? notasNovo.notasFinal : cardVals.notaFinal }}
+        </div>
+        <div class="card_bar" style="height: 6px !important;"></div>
       </div>
-      <div *ngIf="loadNotas" class="mini_card_valor">
-        <i class="pi pi-spin pi-spinner"></i>
-      </div>
-      <div *ngIf="!loadNotas" class="mini_card_valor">
-        {{ notasNovo.notasFinal > 0 ? notasNovo.notasFinal : cardVals.notaFinal }}
-      </div>
-      <div class="card_bar" style="height: 6px !important;"></div>
     </div>
-  </div>
 
-  <div class="col-3">
-    <div class="card_nota" [ngClass]='parseColorSprint(notasNovo.sprints > 0 ? notasNovo.sprints : cardVals.sprints)'>
-      <div class="card_brilho"></div>
-      <div class="fas fa-chart-area mini_card_ico"></div>
-      <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
-        SPRINTS
+    <div class="col-3">
+      <div class="card_nota" [ngClass]='parseColorSprint(notasNovo.sprints > 0 ? notasNovo.sprints : cardVals.sprints)'>
+        <div class="card_brilho"></div>
+        <div class="fas fa-chart-area mini_card_ico"></div>
+        <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
+          SPRINTS
+        </div>
+        <div *ngIf="loadNotas" class="mini_card_valor">
+          <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        <div *ngIf="!loadNotas" class="mini_card_valor">
+          + {{ notasNovo.sprints > 0 ? notasNovo.sprints : cardVals.sprints }}
+        </div>
+        <div class="card_bar" style="height: 6px !important;"></div>
       </div>
-      <div *ngIf="loadNotas" class="mini_card_valor">
-        <i class="pi pi-spin pi-spinner"></i>
-      </div>
-      <div *ngIf="!loadNotas" class="mini_card_valor">
-        {{ notasNovo.sprints > 0 ? notasNovo.sprints : cardVals.sprints }}
-      </div>
-      <div class="card_bar" style="height: 6px !important;"></div>
     </div>
-  </div>
 
-  <div class="col-3">
-    <div class="card_nota" [ngClass]='parseColor(notasNovo.prioritarios > 0 ? notasNovo.prioritarios : cardVals.prioritarios)'>
-      <div class="card_brilho"></div>
-      <div class="fas fa-chart-area mini_card_ico"></div>
-      <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
-        PRIORITÁRIOS
+    <div class="col-3">
+      <div class="card_nota" [ngClass]='parseColor(notasNovo.prioritarios > 0 ? notasNovo.prioritarios : cardVals.prioritarios)'>
+        <div class="card_brilho"></div>
+        <div class="fas fa-chart-area mini_card_ico"></div>
+        <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
+          PRIORITÁRIOS
+        </div>
+        <div *ngIf="loadNotas" class="mini_card_valor">
+          <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        <div *ngIf="!loadNotas" class="mini_card_valor">
+          {{ notasNovo.prioritarios > 0 ? notasNovo.prioritarios : cardVals.prioritarios }}
+        </div>
+        <div class="card_bar" style="height: 6px !important;"></div>
       </div>
-      <div *ngIf="loadNotas" class="mini_card_valor">
-        <i class="pi pi-spin pi-spinner"></i>
-      </div>
-      <div *ngIf="!loadNotas" class="mini_card_valor">
-        {{ notasNovo.prioritarios > 0 ? notasNovo.prioritarios : cardVals.prioritarios }}
-      </div>
-      <div class="card_bar" style="height: 6px !important;"></div>
     </div>
-  </div>
 
-  <div class="col-3">
-    <div class="card_nota"  [ngClass]='parseColor(notasNovo.direcionadores > 0 ? notasNovo.direcionadores : cardVals.direcionadores)'>
-      <div class="card_brilho"></div>
-      <div class="fas fa-chart-area mini_card_ico"></div>
-      <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
-        DIRECIONADORES
+    <div class="col-3">
+      <div class="card_nota"  [ngClass]='parseColor(notasNovo.direcionadores > 0 ? notasNovo.direcionadores : cardVals.direcionadores)'>
+        <div class="card_brilho"></div>
+        <div class="fas fa-chart-area mini_card_ico"></div>
+        <div class="bold text-center" style="display: inline-block;padding: 5px 0 3px 50px;">
+          DIRECIONADORES
+        </div>
+        <div *ngIf="loadNotas" class="mini_card_valor">
+          <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        <div *ngIf="!loadNotas" class="mini_card_valor">
+          {{ notasNovo.direcionadores > 0 ? notasNovo.direcionadores : cardVals.direcionadores }}
+        </div>
+        <div class="card_bar" style="height: 6px !important;"></div>
       </div>
-      <div *ngIf="loadNotas" class="mini_card_valor">
-        <i class="pi pi-spin pi-spinner"></i>
-      </div>
-      <div *ngIf="!loadNotas" class="mini_card_valor">
-        {{ notasNovo.direcionadores > 0 ? notasNovo.direcionadores : cardVals.direcionadores }}
-      </div>
-      <div class="card_bar" style="height: 6px !important;"></div>
     </div>
+
+
   </div>
-
-
 </div>

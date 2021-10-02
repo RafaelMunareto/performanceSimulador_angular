@@ -1,3 +1,22 @@
+<!-- salvar a simulação -->
+<p-dialog position="top" [(visible)]="storeBoolean" [baseZIndex]="5002">
+  <form class='mt-2' [formGroup]="resourceForm" (submit)='store()'>
+    <div class="row ml-2 mr-2 mt-2 mb-2">
+      <div class='col-12 p-1'>
+        <input type="text" placeholder="Nome simulação" formControlName="no_simulacao" pInputText />
+        <app-form-field-error [form-control]="resourceForm.get('no_simulacao')"></app-form-field-error>
+      </div>
+      <div class='col-12 p-1'>
+        <textarea [rows]="7" placeholder="Descrição" formControlName="descricao" [cols]="100" style='width: 100%;' pInputTextarea ></textarea>
+        <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
+      </div>
+    </div>
+    <div class='d-flex justify-content-end mt-2 p-1'>
+      <p-button label="Enviar" type='submit'icon="pi pi-send" iconPos="left"></p-button>
+    </div>
+  </form>
+</p-dialog>
+
 <p-dialog header="Simulador Performance {{ tipoPerformance }} - {{ unSelected }}"
         [maximizable]='true'
         (onHide)='hide.emit()'
@@ -6,6 +25,20 @@
         position="bottom"
         [style]="{width: '100vw'}"
     >
+
+  <!-- dropdown -->
+  <div class="row mb-3 ml-4 mr-4" *ngIf='responsavel'>
+    <div class="col-4">
+      <div class="flex-column">
+        <span><span class='bold'>Data: </span>{{ data | date: 'dd/M/y' }}</span>
+        <br>
+        <span><span class='bold'>Responsável: </span>{{ responsavel_matricula }} - {{ responsavel }}</span>
+      </div>
+    </div>
+    <div class="col-8">
+      <span *ngIf='descricao'><span class='bold'>Descrição: </span> {{ descricao }}</span>
+    </div>
+  </div>
 
   <!-- header notas finais -->
   <app-simulador-notas
@@ -16,7 +49,27 @@
     [direcionador]='direcionadores'
     [prioritario]='prioritarios'
     [dadoSimuladoArray]='dadoAlteradoSimulacao'
+    (simulacaoConcluida)="recebeSimulacao($event)"
+    [recalcularNF]='recalcularNotaFinal'
   ></app-simulador-notas>
+
+  <div class="d-flex justify-content-center mt-3">
+    <div class="d-flex">
+      <p-dropdown
+        class='ml-3 dropdown_custom'
+        (onChange)="changeSimulacao($event)"
+        [options]="simulacoes"
+        [(ngModel)]='simulado'
+        [baseZIndex]="50002"
+        [filter]="true"
+        filterBy="label"
+        optionLabel="label"
+        optionValue="value">
+      </p-dropdown>
+      <p-progressSpinner class='ml-2'[style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"  *ngIf='progressBar'></p-progressSpinner>
+    </div>
+  </div>
+
 
   <!-- itens para calculo -->
   <!-- sprint -->
@@ -27,7 +80,7 @@
           <div class="row_tittle">
             <span><i class="fas fa-user-chart"></i> SPRINTS</span>
           </div>
-          <div class="row" style='margin-left:0.1rem'>
+          <div class="row" style='margin-left:0.1rem; padding:15px'>
             <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of sprint' [data]='linha'></app-simulador-items>
           </div>
         </div>
@@ -41,7 +94,7 @@
           <div class="row_tittle">
             <span><i class="fas fa-user-chart"></i> PRIORITÁRIOS</span>
           </div>
-          <div class="row" style='margin-left:0.1rem'>
+          <div class="row" style='margin-left:0.1rem; padding:15px'>
             <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of prioritarios' [data]='linha'></app-simulador-items>
           </div>
         </div>
@@ -55,7 +108,7 @@
           <div class="row_tittle">
             <span><i class="fas fa-user-chart"></i> DIRECIONADORES</span>
           </div>
-          <div class="row" style='margin-left:0.1rem'>
+          <div class="row" style='margin-left:0.1rem; padding:15px'>
             <app-simulador-items (dadoItemAlterado)='recebeDadoAlterado($event)' *ngFor='let linha of direcionadores' [data]='linha'></app-simulador-items>
           </div>
         </div>
@@ -64,4 +117,7 @@
 
   </div>
 
+  <div class="d-flex justify-content-end" style='padding-right:2rem; padding-bottom:2rem'>
+    <button pButton type="button" icon="pi pi-check" label='Salvar Simulação' (click)='salvar()' iconPos="left" style='min-width'></button>
+  </div>
 </p-dialog>

@@ -1,12 +1,17 @@
 import { FuncoesGeraisService } from 'src/app/shared/functions/funcoes-gerais.service';
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-simulador-notas',
   templateUrl: './notas.component.html',
-  styleUrls: ['./notas.component.sass']
+  styleUrls: ['./notas.component.sass'],
 })
 export class NotasComponent implements OnInit {
+
+
+  constructor(public fb: FuncoesGeraisService) { }
+
   @Input() newVals: any;
   @Input() cardVals: any;
   @Input() loadNotas: any;
@@ -14,21 +19,24 @@ export class NotasComponent implements OnInit {
   @Input() direcionador: any[] = [];
   @Input() prioritario: any[] = [];
   @Input() dadoSimuladoArray: any[] = [];
+  @Input() recalcularNF:boolean = false;
+  @Output() simulacaoConcluida = new EventEmitter<any>();
 
+  canShowTop = false;
   notasNovo = {notasFinal: 0, sprints: 0, prioritarios: 0, direcionadores: 0};
 
-
-  constructor(public fb: FuncoesGeraisService) { }
 
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges){
-    if (changes.dadoSimuladoArray){
+    if (changes.dadoSimuladoArray || changes.newVals || changes.recalcularNF){
       this.calculoSprint();
       this.calculoPrioritario();
       this.calculoDirecionadores();
       this.notaFinal();
+      this.simulacaoStore();
     }
+    
   }
 
   private calculoSprint()
@@ -44,7 +52,6 @@ export class NotasComponent implements OnInit {
 
   private calculoPrioritario()
   {
-    console.log(this.prioritario);
 
     const pesoInicial = this.prioritario.reduce((memo, res) => memo + parseFloat(res.nu_peso), 0);
     const calc = this.prioritario.reduce((memo, res) => {
@@ -52,7 +59,6 @@ export class NotasComponent implements OnInit {
       const pct = simulado ? simulado.percent_value : res.pct_atingido;
       return memo + parseFloat(res.nu_peso) *
     this.travasPercent(pct, res.pct_max, res.pct_min, res.pct_regua_min) / 100; }, 0);
-    console.log(pesoInicial, calc);
     const calculo = (parseFloat(calc) / parseFloat(pesoInicial) ) * 100;
     this.notasNovo.prioritarios = this.fb.convertToFloat2(calculo);
   }
@@ -105,26 +111,42 @@ export class NotasComponent implements OnInit {
     return pct_simuladoFormat;
   }
 
+  private simulacaoStore(){
+    const novoArray = [...this.direcionador, ...this.prioritario, ...this.sprint ];
+
+    novoArray.map((res) => {
+      const simulado = this.dadoSimuladoArray.find(d => d.id_parametros === res.id_parametros);
+      const pct = simulado ? simulado.percent_value : res.pct_atingido;
+    });
+
+    this.simulacaoConcluida.emit(novoArray);
+
+  }
+
   parseColor(val: any, isCard: boolean = true) {
     const cmpVal = parseFloat(val);
     if (cmpVal >= 100) {
-      return isCard ? 'blue' : '#0861acff';
+      return isCard ? 'blue_notas' : '#0861acff';
     } else if (cmpVal >= 95 && cmpVal < 100) {
-      return isCard ? 'green' : '#61a03cff';
+      return isCard ? 'green_notas' : '#61a03cff';
     } else if (cmpVal >= 90 && cmpVal < 95) {
-      return isCard ? 'yellow' : '#e29a0aff';
+      return isCard ? 'yellow_notas' : '#e29a0aff';
     } else {
-      return isCard ? 'red' : '#ca5353';
+      return isCard ? 'red_notas' : '#ca5353';
     }
   }
 
   parseColorSprint(val: any) {
     const cmpVal = parseFloat(val);
     if (cmpVal > 0) {
-      return 'blue';
+      return 'blue_notas';
     } else {
-      return 'red';
+      return 'red_notas';
     }
+  }
+
+  salvarNotas(event: any){
+    console.log(this.notasNovo);
   }
 
 

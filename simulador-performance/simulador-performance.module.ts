@@ -1,5 +1,6 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { DirectiveModule } from './../../../directive/directive.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimuladorPerformanceComponent } from './simulador-performance.component';
@@ -11,6 +12,9 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { KnobModule } from 'primeng/knob';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ButtonModule} from 'primeng/button';
+import { SimuladorPerformanceService } from '../shared/simulador-performance.service';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -27,10 +31,17 @@ import {ButtonModule} from 'primeng/button';
     KnobModule,
     InputNumberModule,
     ButtonModule,
-    DirectiveModule
+    DirectiveModule,
+    InputTextModule,
+    InputTextareaModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
-  exports:[
+  exports: [
     SimuladorPerformanceComponent
+  ],
+  providers: [
+    SimuladorPerformanceService
   ]
 })
 export class SimuladorPerformanceModule { }
